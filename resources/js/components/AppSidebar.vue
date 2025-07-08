@@ -14,19 +14,54 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard',
         icon: LayoutGrid,
     },
+
+    {
+        title: 'Task',
+        href: '/dashboard',
+        icon: LayoutGrid,
+        children: [
+            {
+                title: 'All Tasks',
+                href: '/dashboard/tasks',
+                icon: Folder,
+            },
+            {
+                title: 'Create Task',
+                href: '/dashboard/tasks/create',
+                icon: BookOpen,
+            },
+        ],
+    },
+    {
+        title: 'Manage User',
+        href: '/dashboard',
+        icon: LayoutGrid,
+        children: [
+            {
+                title: 'All Users',
+                href: '/dashboard/users',
+                icon: Folder,
+            },
+            {
+                title: 'Invite User',
+                href: '/dashboard/users/invite',
+                icon: BookOpen,
+            },
+        ],
+    },
 ];
 
 const footerNavItems: NavItem[] = [
-    {
-        title: 'Github Repo',
-        href: 'https://github.com/laravel/vue-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#vue',
-        icon: BookOpen,
-    },
+    // {
+    //     title: 'Github Repo',
+    //     href: 'https://github.com/laravel/vue-starter-kit',
+    //     icon: Folder,
+    // },
+    // {
+    //     title: 'Documentation',
+    //     href: 'https://laravel.com/docs/starter-kits#vue',
+    //     icon: BookOpen,
+    // },
 ];
 </script>
 
