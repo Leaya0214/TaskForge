@@ -7,6 +7,10 @@ import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
 import { initializeTheme } from './composables/useAppearance';
 import Home from './pages/Home.vue';
+import toastr from 'toastr'
+import 'toastr/build/toastr.min.css'
+
+
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -24,5 +28,10 @@ createInertiaApp({
     },
 });
 
+toastr.options = {
+  closeButton: true,
+  progressBar: true,
+  positionClass: 'toast-top-right',
+};
 // This will set light / dark mode on page load...
 initializeTheme();

@@ -17,7 +17,7 @@ const mainNavItems: NavItem[] = [
 
     {
         title: 'Task',
-        href: '/dashboard',
+        href: route('task.index', {}, false),
         icon: LayoutGrid,
         children: [
             {
@@ -49,6 +49,11 @@ const mainNavItems: NavItem[] = [
             },
         ],
     },
+    {
+        title: 'Role & Permission',
+        href: route('role-permission.index', {}, false),
+        icon: Folder,
+    },
 ];
 
 const footerNavItems: NavItem[] = [
@@ -72,7 +77,7 @@ const footerNavItems: NavItem[] = [
                 <SidebarMenuItem>
                     <SidebarMenuButton size="lg" as-child>
                         <Link :href="route('dashboard')">
-                            <AppLogo />
+                        <AppLogo />
                         </Link>
                     </SidebarMenuButton>
                 </SidebarMenuItem>
