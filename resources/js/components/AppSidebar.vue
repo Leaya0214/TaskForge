@@ -34,20 +34,8 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Manage User',
-        href: '/dashboard',
+        href: '/users',
         icon: LayoutGrid,
-        children: [
-            {
-                title: 'All Users',
-                href: '/dashboard/users',
-                icon: Folder,
-            },
-            {
-                title: 'Invite User',
-                href: '/dashboard/users/invite',
-                icon: BookOpen,
-            },
-        ],
     },
     {
         title: 'Role & Permission',

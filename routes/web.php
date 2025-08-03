@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ManageUserController;
 use App\Http\Controllers\Task\TaskController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,6 +18,8 @@ require __DIR__.'/auth.php';
 require __DIR__.'/role.php';
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    //Manage User 
+    Route::resource('/users',ManageUserController::class)->except('show');
     //Task Routes
     Route::get('/tasks', [TaskController::class, 'index'])->name('task.index');
     Route::get('/tasks/create', [TaskController::class, 'create'])->name('task.create');
