@@ -24,6 +24,21 @@ class User extends Authenticatable
         'password',
     ];
 
+      //Cretae Accessor
+
+    public function isAdmin(){
+        return $this->role === 'admin';
+    }
+
+    public function isManager(){
+        return $this->role === 'manager';
+    }
+
+    public function isEmployee(){
+        return $this->role === 'employee';
+    }
+
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -34,6 +49,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+  
     /**
      * Get the attributes that should be cast.
      *

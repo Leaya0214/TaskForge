@@ -29,7 +29,9 @@ const deleteUser = (id) => {
         <div class="p-6">
             <div class="flex items-center justify-between mb-6">
                 <h1 class="text-2xl font-bold text-white-800">User List</h1>
-                <Link :href="route('users.create', {}, false)"
+                <Link 
+                v-if="isAdmin"
+                :href="route('users.create', {}, false)"
                     class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                 + New User
                 </Link>
@@ -47,7 +49,7 @@ const deleteUser = (id) => {
                                 Email</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Role</th>
-                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th  v-if="isAdmin" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Actions</th>
                         </tr>
                     </thead>
@@ -58,6 +60,7 @@ const deleteUser = (id) => {
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-white">{{ user.email }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-white">{{ user.role }}</td>
                             <td
+                            v-if="isAdmin"
                                 class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-white bg-gray-900">
                                 <Link :href="route('users.edit', user.id)"
                                     class="text-indigo-400 hover:text-indigo-600 mr-3">Edit</Link>

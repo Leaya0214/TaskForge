@@ -7,7 +7,23 @@ import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
+import { computed } from 'vue';
+import { usePage } from '@inertiajs/vue3';
 
+const props = defineProps({
+  auth: Object,
+});
+interface PageProps {
+  auth: {
+    user: AuthUser | null;
+  };
+  [key: string]: any; // অন্য props থাকলে
+}
+const page = usePage<PageProps>();;
+
+const userRole = computed(() => page.props.value.auth?.user?.role ?? 'undefined');
+
+alert(userRole.value)
 const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
@@ -37,13 +53,33 @@ const mainNavItems: NavItem[] = [
         href: '/users',
         icon: LayoutGrid,
     },
-    {
-        title: 'Role & Permission',
-        href: route('role-permission.index', {}, false),
-        icon: Folder,
-    },
+    // {
+    //     title: 'Role & Permission',
+    //     href: route('role-permission.index', {}, false),
+    //     icon: Folder,
+    // },
 ];
 
+const filteredNavItems = computed(() => {
+  return mainNavItems.filter((item) => {
+    // Only Admin can see Manage User
+    if (item.title === 'Manage User' && userRole.value !== 'Admin') {
+      return false;
+    }
+
+    // Example: Only Admin & Manager can see Create Task
+    if (item.title === 'Task' && item.children) {
+      item.children = item.children.filter((child) => {
+        if (child.title === 'Create Task') {
+          return userRole.value === 'Admin' || userRole.value === 'Manager';
+        }
+        return true; // All roles can see All Tasks
+      });
+    }
+
+    return true;
+  });
+});
 const footerNavItems: NavItem[] = [
     // {
     //     title: 'Github Repo',

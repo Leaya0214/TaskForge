@@ -13,7 +13,7 @@ const form = useForm({
   name: props.user.name || '',
   email: props.user.email || '',
   password: '',
-  confirm_password: '',
+  password_confirmation: '',
   role: props.user.role || '',
 });
 
@@ -89,15 +89,15 @@ const submitForm = () => {
 
               <!-- Confirm Password -->
               <div>
-                <label for="confirm_password" class="block mb-2 font-medium text-gray-700">Confirm Password</label>
+                <label for="password_confirmation" class="block mb-2 font-medium text-gray-700">Confirm Password</label>
                 <input
-                  v-model="form.confirm_password"
+                  v-model="form.password_confirmation"
                   type="password"
-                  id="confirm_password"
+                  id="password_confirmation"
                   class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900"
                 />
-                <div v-if="form.errors.confirm_password" class="text-red-500 text-sm mt-2">
-                  {{ form.errors.confirm_password }}
+                <div v-if="form.errors.password_confirmation" class="text-red-500 text-sm mt-2">
+                  {{ form.errors.password_confirmation }}
                 </div>
               </div>
 

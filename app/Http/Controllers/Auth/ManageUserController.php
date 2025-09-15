@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use function Termwind\render;
@@ -16,6 +18,7 @@ class ManageUserController extends Controller
         $users = User::get();
 
         return Inertia::render('user/ManageUser', [
+            'user' => Auth::user(),
             'users' => $users,
 
         ]);
@@ -23,6 +26,7 @@ class ManageUserController extends Controller
 
     public function create()
     {
+        Gate::authorize('isAdmin');
         return Inertia::render('user/CreateUser');
     }
 
@@ -60,6 +64,8 @@ class ManageUserController extends Controller
             'email'             => 'required|email|unique:users,email,' . $user->id,
             'password'          => 'nullable|string|min:6|confirmed',
             'role'              => 'required|string', // Adjust validation as needed
+            // 'confirm_password' => ['same:password'],
+
         ]);
 
         $user->name = $request->name;
